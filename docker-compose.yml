@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    image: ruby:2.7.0-buster
+    tty: true
+    stdin_open: true
+    entrypoint: /usr/bin/docker-entrypoint.sh
+    working_dir: /app
+    command: bash
+    environment:
+      RACK_ENV: development
+      APP_ENV: development
+    volumes:
+      - ./resources/docker/entrypoint:/usr/bin/docker-entrypoint.sh
+      - .:/app:cached
+    ports:
+      - "4567:4567"
+
